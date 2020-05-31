@@ -10,15 +10,15 @@ vehicle <- grepl("vehicle", SCC$SCC.Level.Two, ignore.case=TRUE)
 selectedSCC2 <- SCC[vehicle,]$SCC
 vehicleBaltimore <- Baltimore[Baltimore$SCC %in% selectedSCC2,]
 
-## turn the column year into factor
+## convert the column year into factor
 vehicleBaltimore$year <- factor(vehicleBaltimore$year)
 
-
+##create the file
 png("plot5.png")
+##making the plots
 ggplot(vehicleBaltimore,aes(year,Emissions)) +
         geom_bar(stat="identity") +
         theme_bw() + guides(fill=FALSE)+ 
-        labs(x="Year", y="Total PM Emission (tons)")+
-        labs(title="PM2.5 Emissions from Motor Vehicle Sources in Baltimore",
-             col = "grey")
+        labs(x="Year", y="Total PM2.5 Emissions (tons)")+
+        labs(title="PM2.5 Emissions from Motor Vehicle Sources in Baltimore City")
 dev.off()

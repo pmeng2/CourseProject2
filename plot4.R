@@ -10,15 +10,15 @@ coalCombustion <- (combustion & coal)
 selectedSCC <- SCC[coalCombustion,]$SCC
 coalcombNEI <- NEI[NEI$SCC %in% selectedSCC,]
 
-## turn the column year into factor
+## convert the column year into factor
 coalcombNEI$year <- factor(coalcombNEI$year)
 
-
+##create the file
 png("plot4.png")
+##making the plots
 ggplot(coalcombNEI,aes(year,Emissions)) +
         geom_bar(stat="identity") +
-        theme_bw() + guides(fill=FALSE)+ 
-        labs(x="Year", y="Total PM Emission (tons)")+
-        labs(title="PM2.5 Emissions from Coal Combustion-related Source across US",
-             col = "wheat")
+        theme_bw() + guides(fill=FALSE) + 
+        labs(x="Year", y="Total PM2.5 Emissions (tons)")+
+        labs(title="PM2.5 Emissions from Coal Combustion-related Source across US")
 dev.off()
